@@ -2,7 +2,7 @@
 - author: Daniel Dobeš DOB0136
 - working name: Sytem Proving Truth
 
-# Deployed
+# Deployment
 [here](https://dobesdaniel.github.io/bachelor/)
 
 # Setup
