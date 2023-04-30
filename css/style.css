@@ -1,0 +1,162 @@
+/*
+    style.css
+    author: Daniel Dobeš
+
+    default styling for main elements
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    
+    min-height: 100vh;
+    position: relative;
+  }
+  
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 36px;
+  }
+
+  main {
+    max-width: auto;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 60px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  footer p {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  footer button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  footer button:hover {
+    background-color: #666;
+  }
+  
+
+  .tooltip-primary {
+    position: relative;
+  }
+  
+  .tooltip-primary:before {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    top: 55%;
+    left: 120%;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    white-space: nowrap;
+  }
+  
+  .tooltip-primary:hover:before {
+    display: block;
+  }
+  
+  .tooltip-secondary {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip-secondary:before {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #aaa;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    white-space: pre-wrap;
+    width: 150px;
+    font-style: italic;
+  }
+  
+  .tooltip-secondary:hover:before {
+    display: block;
+  }
+
+
+
+  
+  
+  #download-button-container{
+    margin-left: 20%;
+  }
+
+  .default-element-properties{
+    margin-left: 20% !important;
+    width: 60%;
+  }

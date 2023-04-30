@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Bachelor thesis - Tool for Proovig Validity of Arguments">
+    <meta name="author" content="Daniel Dobeš">
+    
+
+	<title>Bachelor project</title>
+
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/table.css">
+    <link rel="stylesheet" type="text/css" href="./css/control.css">
+    <link rel="stylesheet" type="text/css" href="./css/tour.css">
+    
+</head>
+<body>
+	<header>
+		<h1>Tool for Proovig Validity of Arguments</h1>
+	</header>
+
+	<main>
+        <div id="tour-modal">
+            <div id="tour-content">
+                <h2 id="tour-title"></h2>
+                <p id="tour-text"></p>
+                <div>
+                    <button id="button-tour-prev">Previous</button>
+                    <button id="button-tour-next">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="drop-zone">
+            <p>Drag and drop your file here...</p>
+            <input type="file" id="file-input" accept=".txt">
+        </div>
+        <div id="content">
+            <div class="input-type">
+                <label class="tour-step-1" for="static-input">Formula</label>
+                <input class="tour-step-1" type="radio" id="radio-static" name="input-type" value="static" checked>
+                <input class="tour-step-1" type="radio" id="radio-dynamic" name="input-type" value="dynamic">
+                <label class="tour-step-1" for="dynamic-input">Argument</label>
+              </div>
+            
+            <div id="judgement-input" class="input-div" style="display: none">
+                <div class="input-container tour-step-2b">
+                    <label for="premises"><p class="tooltip-secondary" data-tooltip="Example inputs: &#10;   a imp b &#10;   (p or q) and r  &#10;   (~a + b ) = (a > b) ">Premises:</p></label>
+                    <div id="premises-container">
+                        <input type="text" id="dynamic-input" placeholder="Enter premise here..." oninput="handlePremiseInput(event)">
+                    </div>
+                    <label for="conclusion"><p class="tooltip-secondary" data-tooltip="Example inputs: &#10;   a imp b &#10;   (p or q) and r  &#10;   (~a + b ) = (a > b) ">Conclusion:</p></label>
+                    <div id="conclusion-container" class="input-wrapper">
+                        <input type="text" id="conclusion-input" placeholder="Enter conclusion here...">
+                        <button class="button tour-step-4" type="button" id="process-button-judgement">Process</button>
+                    </div>
+                    <div id="conclusion-error-container"><p id="conclusion-error-message"></p></div>
+                </div>
+            </div>
+            
+            <div id="formula-input" class="input-div">
+                <label for="input-field"><p class="tooltip-secondary" data-tooltip="Example inputs: &#10;   a imp b &#10;   (p or q) and r  &#10;   (~a + b ) = (a > b) ">Formula:</p></label>
+               
+                <div class="input-container tour-step-2a">
+                    <div class="input-wrapper">
+                      <input type="text" id="input-field" placeholder="Enter formula here, or use drag and drop...">
+                      <button class="button tour-step-4" type="button" id="process-button-formula">Process</button>
+                    </div>
+                    <div id="input-dropdown" style="display: none">
+                      <ul id="input-history-list"></ul>
+                    </div>
+                </div>
+               
+                <div id="error-container">
+                    <p id="error-message"></p>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox-truth-table" class="tour-step-3a">
+                    <p class="tour-step-3a">Truth table</p>
+                    <button id="button-truth-table-description" class="button-description tour-step-3b">+</button>
+                </div>
+                <div id="truth-table-description" class="description" style="display:none;">
+                    The truth table method is the most basic method of proof in propositional logic. 
+                    Since the truth function table of a given formula is always finite, 
+                    it is possible to decide in a finite number of steps about the validity of an argument, the tautology of a given formula. 
+                    Therefore, we say that the logical truth problem is decidable. 
+                    <br><br>
+                    A truth table consists of columns for each propositional variable in the expression and an additional column for the final result.
+                    The rows of the table represent all possible combinations of truth values for the variables in the expression.
+                    <br><br>
+                    To use a truth table, we first write down the propositional variables and their corresponding truth values.
+                    Then, we build up the logical expression by applying logical operators such as conjunction, disjunction, negation, implication, or equivalence
+                    to the propositional variables. We fill in the table with the truth values of the logical expression for each combination of truth values
+                    of the propositional variables.
+                    <br>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox-indirect-proof" class="tour-step-3a">
+                    <p class="tour-step-3a">Indirect proof</p>
+                    <button id="button-indirect-proof-description" class="button-description tour-step-3b">+</button>
+                </div>
+                <div id="indirect-proof-description" class="description" style="display:none;">
+                    Indirect proof, also known as proof by contradiction, 
+                    is method in logic that involves assuming the opposite of what we want to prove and then showing that this leads to a contradiction. 
+                    By demonstrating that the opposite of what we want to prove is false, we can conclude that what we want to prove is true.
+                    <br><br>
+                    The indirect proof method involves the following steps:
+                    <br>
+                    1. Assume the opposite of what we want to prove. For example, if we want to prove that statement A is true, we assume that statement A is false.
+                    <br>
+                    2. Use logical deductions and the given premises to show that the opposite assumption leads to a contradiction. 
+                    This is often done by showing that the assumption leads to a logical inconsistency or violates some known principle or fact.
+                    <br>
+                    3. Since the opposite assumption leads to a contradiction, we can conclude that it is false. 
+                    Therefore, the original statement we wanted to prove (statement A) must be true.
+                    <br>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox-resolution" class="tour-step-3a">
+                    <p class="tour-step-3a">Resolution</p>
+                    <button id="button-resolution-description" class="button-description tour-step-3b">+</button>
+                </div>
+                <div id="resolution-description" class="description" style="display:none;">
+                    The resolution method is an important technique for proving the validity of arguments and for checking tautologies in propositional logic. 
+                    This method is applied to formulas in the conjunctive normal form. 
+                    The principle of the method is to apply the resolution rule to two clauses (elementary disjunction) in order to derive a new clause. 
+                    This procedure is repeated until no new clause can be derived or an empty clause has been derived, which means that it is an unachievable formula (formula in CNF).
+                    <br><br>
+                    The resolution method involves the following steps:
+                    <br>
+                    1.  Convert argument into formula, if needed.
+                    <br>
+                    2.  Negate formula.
+                    <br>
+                    3. Transform formula into conjunctive normal form (CNF). 
+                    This involves expressing each statement as a disjunction of literals, 
+                    where each literal is a propositional variable or its negation.
+                    <br>
+                    4. Generate clauses by combining pairs of clauses using resolution inference rule,
+                    which states that if two clauses contain complementary literals (i.e., a variable and its negation), 
+                    then we can resolve them to create a new clause that contains all the remaining literals.
+                    <br>
+                    5.  Repeat step 4 until we either derive an empty clause or reach a point where no further resolution is possible.
+                    <br>
+                    6.  If we derive an empty clause, then we know that the original set of statements is inconsistent and therefore invalid.
+                    If we cannot derive an empty clause, then the original set of statements is consistent and therefore valid.
+                    <br>
+                </div>
+            </div>
+            <div class="tables" id="tables"></div>
+        </div>
+    
+	</main>
+    
+	<footer>
+		<p> Daniel Dobeš DOB0136</p>
+        <button id="button-start-tour">Start Tour</button>
+	</footer>
+
+	<script type="text/javascript" src="./js/logic.js"></script>
+    <script type="text/javascript" src="./js/formula.js"></script>
+    <script type="text/javascript" src="./js/grammar.js"></script>
+    <script type="text/javascript" src="./js/utils.js"></script>
+    <script type="text/javascript" src="./js/process.js"></script>
+    <script type="text/javascript" src="./js/tour.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    
+    </body>
+</html>

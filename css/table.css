@@ -1,0 +1,77 @@
+/*
+    table.css
+    author: Daniel Dobeš
+
+    styling for tables
+*/
+
+  .tables {
+    width: 100%;
+    margin-bottom: 100px;
+    
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 60%;
+    border: 1px solid black;
+    margin-bottom: 30px;
+    margin-left: 20%;
+    margin-right: 10%
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    
+  }
+  
+  td.highlightPossitive {
+    background-color: rgb(160, 255, 160);
+  }
+  td.highlightNegative {
+    background-color: rgb(240, 167, 167);
+  }
+  td.highlightNeutral {
+    background-color: rgb(255, 255, 156);
+  }
+  
+  caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .tables-header {
+    margin-top: 5%;
+    margin-left: 20%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: left;
+    width: 60%;
+  }
+
+  .tables-header h2 {
+    margin-top: 10px !important;
+    margin-left: 20px !important;
+  }
+
+
+  .table-tooltip:hover::after {
+    content: attr(title);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  
